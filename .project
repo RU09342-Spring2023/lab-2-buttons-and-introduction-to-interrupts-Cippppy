@@ -26,6 +26,16 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>GPIO_Driver.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/lab-1-gpio-demo-and-driver-Cippppy/4%20GPIO%20Driver/GPIO_Driver.c</locationURI>
+		</link>
+		<link>
+			<name>GPIO_Driver.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/lab-1-gpio-demo-and-driver-Cippppy/4%20GPIO%20Driver/GPIO_Driver.h</locationURI>
+		</link>
+		<link>
 			<name>OccupancyDetector.c</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/4%20Designing%20an%20Intruder%20Security%20System/OccupancyDetector.c</locationURI>
