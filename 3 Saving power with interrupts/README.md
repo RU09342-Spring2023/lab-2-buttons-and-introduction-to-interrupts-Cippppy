@@ -76,6 +76,25 @@ Then load up Energy Trace and perform the similar capture of Power with the LED 
 
 
 # Screenshots and Answers to Questions
-**Replace this section with your screenshots of Energy Trace and provide some reasoning as to Questions 1 and 2 in the Power consumption of the Interrupts Section.**
 
+Polling and Jumper:
 ![Picture 1](pic1.png)
+
+
+Polling without Jumper:
+![Picture 2](pic2.png)
+
+
+Interrupts and Jumper:
+![Picture 3](pic3.png)
+
+
+Interrupts without Jumper:
+![Picture 4](pic4.png)
+
+
+Question 1:
+The bias of the polling is higher because the CPU is constantly reading the input pin. It just keeps checking it no matter if it is high or low. Meanwhile, interrupts will react when the input is high but is not constanly using power to check the pin.
+
+Question 2:
+There are power increased when we press the button even with the LED unplugged because of the pull up resistor. 
