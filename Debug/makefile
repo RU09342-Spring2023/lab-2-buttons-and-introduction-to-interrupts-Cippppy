@@ -10,7 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./1 Buttons and Pullup PullDown Resistors/Part1.obj" \
+"./2 Interrupts and Interrupt Routines/Part2.obj" \
 "../lnk_msp430fr2355.cmd" \
 $(GEN_CMDS__FLAG) \
 -lfrwp_init.a \
@@ -142,8 +142,8 @@ Lab2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "1 Buttons and Pullup PullDown Resistors\Part1.obj" 
-	-$(RM) "Part1.d" 
+	-$(RM) "2 Interrupts and Interrupt Routines\Part2.obj" 
+	-$(RM) "Part2.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

@@ -1,4 +1,4 @@
-"./1 Buttons and Pullup PullDown Resistors/Part1.obj"
+"./2 Interrupts and Interrupt Routines/Part2.obj"
 "../lnk_msp430fr2355.cmd"
 -lfrwp_init.a
 -llibc.a

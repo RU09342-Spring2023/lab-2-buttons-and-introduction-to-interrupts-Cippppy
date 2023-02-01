@@ -9,21 +9,21 @@ CMD_SRCS += \
 ../lnk_msp430fr2355.cmd 
 
 C_SRCS += \
-../1\ Buttons\ and\ Pullup\ PullDown\ Resistors/Part1.c 
+../2\ Interrupts\ and\ Interrupt\ Routines/Part2.c 
 
 C_DEPS += \
-./Part1.d 
+./Part2.d 
 
 OBJS += \
-./1\ Buttons\ and\ Pullup\ PullDown\ Resistors/Part1.obj 
+./2\ Interrupts\ and\ Interrupt\ Routines/Part2.obj 
 
 OBJS__QUOTED += \
-"1 Buttons and Pullup PullDown Resistors\Part1.obj" 
+"2 Interrupts and Interrupt Routines\Part2.obj" 
 
 C_DEPS__QUOTED += \
-"Part1.d" 
+"Part2.d" 
 
 C_SRCS__QUOTED += \
-"../1 Buttons and Pullup PullDown Resistors/Part1.c" 
+"../2 Interrupts and Interrupt Routines/Part2.c" 
 
 
