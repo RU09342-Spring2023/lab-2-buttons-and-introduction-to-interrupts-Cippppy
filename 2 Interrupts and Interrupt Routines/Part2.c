@@ -29,6 +29,9 @@ int main(void)
 
     // @TODO You need to add in the configuration for the Green LED
 
+    P6DIR |= BIT6;
+    P6OUT &= ~BIT6;
+
     P2OUT |= BIT3;                          // Configure P2.3 as pulled-up
     P2REN |= BIT3;                          // P2.3 pull-up register enable
     P2IES &= ~BIT3;                         // P2.3 Low --> High edge
@@ -58,7 +61,7 @@ int main(void)
 __interrupt void Port_2(void)
 {
     // @TODO You might need to modify this based on your approach to the lab
-    P2IFG &= ~BIT3;                         // Clear P1.3 IFG
+    P2IFG &= ~BIT3;                         // Clear P2.3 IFG
     ToggleEnable ^= 0x01;                   // Enable if the toggle should be active
 }
 
