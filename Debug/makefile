@@ -10,7 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./2 Interrupts and Interrupt Routines/Part2.obj" \
+"./3 Saving power with interrupts/Part3.obj" \
 "../lnk_msp430fr2355.cmd" \
 $(GEN_CMDS__FLAG) \
 -lfrwp_init.a \
@@ -142,8 +142,8 @@ Lab2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "2 Interrupts and Interrupt Routines\Part2.obj" 
-	-$(RM) "Part2.d" 
+	-$(RM) "3 Saving power with interrupts\Part3.obj" 
+	-$(RM) "Part3.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

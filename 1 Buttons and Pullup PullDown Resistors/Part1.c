@@ -32,7 +32,7 @@ int main(void)
 
     while(1)
     {
-        if (P2IN ^ BIT3)            // If S2 (P2.3) is pressed, switched from & to ^
+        if (!(P2IN & BIT3))            // If S2 (P2.3) is pressed, switched from & to ^
             P6OUT ^= BIT6;          // Toggle P6.6
         if (!(P4IN & BIT1))            // If S1 (P4.1) is pressed, added !
             P1OUT ^= BIT0;          // Toggle P1.0

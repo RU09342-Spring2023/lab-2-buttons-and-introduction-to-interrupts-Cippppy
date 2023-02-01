@@ -22,9 +22,9 @@ int main(){
 
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
 
-    //runCodeWithSoftwarePolling();
+    runCodeWithSoftwarePolling();
 
-    runCodeWithInterrupts();
+    //runCodeWithInterrupts();
 
     return 0;
 }

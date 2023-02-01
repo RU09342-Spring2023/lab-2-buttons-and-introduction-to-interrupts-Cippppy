@@ -1,4 +1,4 @@
-"./2 Interrupts and Interrupt Routines/Part2.obj"
+"./3 Saving power with interrupts/Part3.obj"
 "../lnk_msp430fr2355.cmd"
 -lfrwp_init.a
 -llibc.a

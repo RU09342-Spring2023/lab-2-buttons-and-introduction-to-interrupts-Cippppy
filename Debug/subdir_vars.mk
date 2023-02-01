@@ -9,21 +9,21 @@ CMD_SRCS += \
 ../lnk_msp430fr2355.cmd 
 
 C_SRCS += \
-../2\ Interrupts\ and\ Interrupt\ Routines/Part2.c 
+../3\ Saving\ power\ with\ interrupts/Part3.c 
 
 C_DEPS += \
-./Part2.d 
+./Part3.d 
 
 OBJS += \
-./2\ Interrupts\ and\ Interrupt\ Routines/Part2.obj 
+./3\ Saving\ power\ with\ interrupts/Part3.obj 
 
 OBJS__QUOTED += \
-"2 Interrupts and Interrupt Routines\Part2.obj" 
+"3 Saving power with interrupts\Part3.obj" 
 
 C_DEPS__QUOTED += \
-"Part2.d" 
+"Part3.d" 
 
 C_SRCS__QUOTED += \
-"../2 Interrupts and Interrupt Routines/Part2.c" 
+"../3 Saving power with interrupts/Part3.c" 
 
 
