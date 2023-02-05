@@ -98,7 +98,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Part3.c|Part2.c|Part1.c|4 Designing an Intruder Security System/OccupancyDetector.c|3 Saving power with interrupts/Part3.c|2 Interrupts and Interrupt Routines/Part2.c|1 Buttons and Pullup PullDown Resistors/Part1.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="OccupancyDetector.c|Part3.c|Part2.c|Part1.c|4 Designing an Intruder Security System/OccupancyDetector.c|3 Saving power with interrupts/Part3.c|2 Interrupts and Interrupt Routines/Part2.c|1 Buttons and Pullup PullDown Resistors/Part1.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

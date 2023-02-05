@@ -1,8 +1,8 @@
 /*
  * OccupancyDetector.c
  *
- *  Created on: Jan 30, 2023
- *      Author: russty
+ *  Created on: Feb 4, 2023
+ *      Author: Christian Cipolletta
  */
 
 #include "GPIO_Driver.h"
@@ -12,113 +12,99 @@
 #define WARNING_STATE 1
 #define ALERT_STATE 2
 
-char Reset = 0x00;
-
-char Motion = 0x00;
-
-// Put some initialization here
-int main (void) {
-    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
-
-    PM5CTL0 &= ~LOCKLPM5;
-
-    char Timer = 0x00;
-
-    gpioInit(1, 0, 1);
-    gpioInit(6, 6, 1);
-
-    gpioInit(2, 3, 0);
-    P2IES &= ~BIT3;
-    P2IE |= BIT3;
-    P2IFG &= ~BIT3;
-
-    gpioInit(3,6,0);
-    P3IES &= ~BIT6;
-    P3IE |= BIT6;
-    P3IFG &= ~BIT6;
-
-    gpioWrite(1,0,0);
-    gpioWrite(6,6,0);
-
-    __bis_SR_register(GIE);                 // Enter LPM3 w/interrupt
-
-    char state = ARMED_STATE;
-
-    while(1)
-    {
-      switch (state) {
-
-        case ARMED_STATE:
-        {
-            Timer = 0x00;
-            gpioWrite(1,0,0);
-
-          // Do something in the ARMED state
-          // If something happens, you can move into the WARNING_STATE
-          // state = WARNING_STATE
-            if (gpioRead(3,6)) {
-                state = WARNING_STATE;
-            }
-
-            else{
-                gpioWrite(6,6,1);
-                __delay_cycles(500000);
-                gpioWrite(6,6,0);
-                __delay_cycles(3000000);
-            }
-        }
-
-        case WARNING_STATE:
-        {
-            gpioWrite(6,6,0);
-          // Do something in the WARNING_STATE
-            if (gpioRead(2,3))
-                state = ARMED_STATE;
-            else if(Motion) {
-
-                gpioWrite(1,0,1);
-                __delay_cycles(500000);
-                gpioWrite(1,0,0);
-                __delay_cycles(500000);
-                Timer = Timer + 1;
-
-            }
-            else
-                state = ARMED_STATE;
-        }
-
-        case ALERT_STATE:
-        {
-            Timer = 0x00;
-            gpioWrite(6,6,0);
-
-            if (Reset)
-                state = ARMED_STATE;
-            else
-                gpioWrite(1,0,1);
-        }
-
-      }
+void delay(unsigned int time) {     // Homemade delay function
+    unsigned int i;
+    for(i=0; i<time; i++) {
+        __delay_cycles(1000);       // Delays by 0.001 seconds
     }
-
-    return 0;
 }
 
-
-#pragma vector=PORT2_VECTOR
-__interrupt void Port_2(void)
+void main(void)
 {
-    // @TODO You might need to modify this based on your approach to the lab
-    P2IFG &= ~BIT3;                         // Clear P2.3 IFG
-    Reset ^= 0x01;                   // Enable if the toggle should be active
+    WDTCTL = WDTPW + WDTHOLD;   // Stop watchdog timer
+
+    PM5CTL0 &= ~LOCKLPM5;       // Disable the GPIO power-on default high-impedance mode
+
+    gpioInit(1,0,1);    // Set the red LED pin as output
+    gpioWrite(1,0,0);   // Turn off the red LED
+
+    gpioInit(6,6,1);    // Set the green LED pin as output
+    gpioWrite(6,6,0);   // Turn off the green LED
+
+    gpioInit(3,6,0);    // Set the occupancy sensor as input
+
+    gpioInit(4,1,0);    // Set the button as input
+
+    unsigned int counter = 0x00;           // Counter for 10 seconds in WARNING_STATE
+    unsigned int motion_counter = 0x00;    // Counter because occupancy sensor has 5 second rest
+    unsigned char state = ARMED_STATE;     // Default state
+
+    while(1) {
+
+        switch(state) {
+
+            case ARMED_STATE:
+
+                counter = 0;       // Resets 10 second counter
+                gpioWrite(6,6,1);  // Turn on the green LED (Pin 6.6 to high)
+                gpioWrite(1,0,0);  // Turn off red LED (Pin 1.0 to low)
+                delay(500);
+
+                gpioWrite(6,6,0); // Turn off the green LED (Pin 1.0 to low)
+                delay(2500);
+
+                if((gpioRead(3,6)) == 0) {      // If motion sensor is low (Pin 3.6 is low)
+                    motion_counter++;
+                }
+
+                else {
+                    motion_counter = 0;
+                }
+
+                if(gpioRead(3,6) != 0) {        // If motion sensor detects motion (Pin 3.6 is high)
+                    state = WARNING_STATE;
+                }
+                break;
+
+            case WARNING_STATE:
+
+                gpioWrite(1,0,1);    // Turn on the red LED (Pin 1.0 to high)
+                gpioWrite(6,6,0);    // Turn off the green LED (Pin 6.6 to low)
+                delay(500);
+
+                gpioWrite(1,0,0);   // Turn off the red LED (Pin 1.0 to high)
+                delay(500);
+
+                if(gpioRead(3,6) != 0) {        // If motion sensor detects motion (Pin 3.6 is high)
+                    counter++;
+                }
+
+                if(counter == 3) {              // If 10 second timer is up
+                    state = ALERT_STATE;
+                }
+
+                else if(gpioRead(3,6) == 0) {   // If motion sensor is low (Pin 3.6 is low)
+                    motion_counter++;
+                }
+
+                else {
+                    motion_counter = 0;
+                }
+
+                if(motion_counter == 5) {      // If 5 seconds go by and motion sensor is still low (Pin 3.6 is low)
+                    state = ARMED_STATE;
+                }
+                break;
+
+            case ALERT_STATE:
+
+                gpioWrite(1,0,1);    // Turn on the red LED (Pin 1.0 is high)
+                gpioWrite(6,6,0);    // Turn off the green LED (Pin 6.6 is low)
+
+                if(gpioRead(4,1) == 0) {    // If button is pressed (4.1 is high)
+                    state = ARMED_STATE;
+                }
+                break;
+        }
+    }
 }
-
-
-#pragma vector=PORT3_VECTOR
-__interrupt void Port_3(void)
-{
-    // @TODO You might need to modify this based on your approach to the lab
-    P3IFG &= ~BIT6;                         // Clear P2.3 IFG
-    Motion ^= 0x01;                   // Enable if the toggle should be active
-}
-

@@ -9,27 +9,27 @@ CMD_SRCS += \
 ../lnk_msp430fr2355.cmd 
 
 C_SRCS += \
-C:/Users/Cip/Documents/School/Semester\ 4/Embedded/lab-1-gpio-demo-and-driver-Cippppy/4\ GPIO\ Driver/GPIO_Driver.c \
-../4\ Designing\ an\ Intruder\ Security\ System/OccupancyDetector.c 
+../ChatGPTTest.c \
+C:/Users/Cip/Documents/School/Semester\ 4/Embedded/lab-1-gpio-demo-and-driver-Cippppy/4\ GPIO\ Driver/GPIO_Driver.c 
 
 C_DEPS += \
-./GPIO_Driver.d \
-./OccupancyDetector.d 
+./ChatGPTTest.d \
+./GPIO_Driver.d 
 
 OBJS += \
-./GPIO_Driver.obj \
-./4\ Designing\ an\ Intruder\ Security\ System/OccupancyDetector.obj 
+./ChatGPTTest.obj \
+./GPIO_Driver.obj 
 
 OBJS__QUOTED += \
-"GPIO_Driver.obj" \
-"4 Designing an Intruder Security System\OccupancyDetector.obj" 
+"ChatGPTTest.obj" \
+"GPIO_Driver.obj" 
 
 C_DEPS__QUOTED += \
-"GPIO_Driver.d" \
-"OccupancyDetector.d" 
+"ChatGPTTest.d" \
+"GPIO_Driver.d" 
 
 C_SRCS__QUOTED += \
-"C:/Users/Cip/Documents/School/Semester 4/Embedded/lab-1-gpio-demo-and-driver-Cippppy/4 GPIO Driver/GPIO_Driver.c" \
-"../4 Designing an Intruder Security System/OccupancyDetector.c" 
+"../ChatGPTTest.c" \
+"C:/Users/Cip/Documents/School/Semester 4/Embedded/lab-1-gpio-demo-and-driver-Cippppy/4 GPIO Driver/GPIO_Driver.c" 
 
 
