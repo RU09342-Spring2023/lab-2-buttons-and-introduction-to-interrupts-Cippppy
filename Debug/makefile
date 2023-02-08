@@ -10,8 +10,8 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./ChatGPTTest.obj" \
 "./GPIO_Driver.obj" \
+"./4 Designing an Intruder Security System/OccupancyDetector.obj" \
 "../lnk_msp430fr2355.cmd" \
 $(GEN_CMDS__FLAG) \
 -lfrwp_init.a \
@@ -143,8 +143,8 @@ Lab2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ChatGPTTest.obj" "GPIO_Driver.obj" 
-	-$(RM) "ChatGPTTest.d" "GPIO_Driver.d" 
+	-$(RM) "GPIO_Driver.obj" "4 Designing an Intruder Security System\OccupancyDetector.obj" 
+	-$(RM) "GPIO_Driver.d" "OccupancyDetector.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

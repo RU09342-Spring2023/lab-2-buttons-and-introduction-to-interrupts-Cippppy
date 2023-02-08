@@ -1,7 +1,7 @@
 /*
  * OccupancyDetector.c
  *
- *  Created on: Feb 4, 2023
+ *  Created on: Feb 8, 2023
  *      Author: Christian Cipolletta
  */
 
@@ -74,12 +74,9 @@ void main(void)
 
                 gpioWrite(1,0,0);   // Turn off the red LED (Pin 1.0 to high)
                 delay(500);
+                counter++;
 
-                if(gpioRead(3,6) != 0) {        // If motion sensor detects motion (Pin 3.6 is high)
-                    counter++;
-                }
-
-                if(counter == 3) {              // If 10 second timer is up
+                if(counter == 10) {              // If 10 second timer is up
                     state = ALERT_STATE;
                 }
 
@@ -98,6 +95,7 @@ void main(void)
 
             case ALERT_STATE:
 
+                counter = 0;       // Resets 10 second counter
                 gpioWrite(1,0,1);    // Turn on the red LED (Pin 1.0 is high)
                 gpioWrite(6,6,0);    // Turn off the green LED (Pin 6.6 is low)
 

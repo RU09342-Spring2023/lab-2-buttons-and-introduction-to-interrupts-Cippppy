@@ -1,5 +1,5 @@
-"./ChatGPTTest.obj"
 "./GPIO_Driver.obj"
+"./4 Designing an Intruder Security System/OccupancyDetector.obj"
 "../lnk_msp430fr2355.cmd"
 -lfrwp_init.a
 -llibc.a
